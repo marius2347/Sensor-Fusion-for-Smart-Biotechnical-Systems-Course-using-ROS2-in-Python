@@ -4,6 +4,11 @@ A fully autonomous **TurtleBot3 Burger** robot simulated in **Webots R2023b** wi
 
 ---
 
+<!-- 🎬 DEMO GIF — upload your gif to this repo and rename it to demo.gif, or change the filename below -->
+![Greenhouse Robot Demo](demo.gif)
+
+---
+
 ## 👥 Team MVAL
 
 | Member | Responsibility |
