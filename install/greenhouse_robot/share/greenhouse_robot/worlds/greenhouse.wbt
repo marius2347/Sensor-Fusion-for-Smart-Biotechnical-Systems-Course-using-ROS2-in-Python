@@ -1,0 +1,124 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/robots/robotis/turtlebot/protos/TurtleBot3Burger.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/devices/robotis/protos/RobotisLds01.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/appearances/protos/SandyGround.proto"
+
+WorldInfo {
+  info [
+    "Autonomous Greenhouse Robot - Sensor Fusion Project"
+  ]
+  title "Greenhouse Environment"
+  basicTimeStep 20
+}
+Viewpoint {
+  orientation -0.35 0.0 0.94 4.5
+  position 8 12 10
+  follow "TurtleBot3Burger"
+}
+TexturedBackground {
+  texture "noon_park_empty"
+  skybox FALSE
+}
+TexturedBackgroundLight {
+}
+
+# ==================== GREENHOUSE FLOOR ====================
+Floor {
+  translation 5 5 0
+  size 12 12
+  tileSize 1 1
+  appearance SandyGround {
+    textureTransform TextureTransform {
+      scale 6 6
+    }
+  }
+}
+
+# ==================== GREENHOUSE WALLS ====================
+Solid {
+  translation 5 11 0.5
+  children [ Shape { appearance PBRAppearance { baseColor 0.85 0.85 0.8 roughness 0.9 } geometry Box { size 12 0.1 1 } } ]
+  name "wall_north"
+  boundingObject Box { size 12 0.1 1 }
+}
+Solid {
+  translation 5 -1 0.5
+  children [ Shape { appearance PBRAppearance { baseColor 0.85 0.85 0.8 roughness 0.9 } geometry Box { size 12 0.1 1 } } ]
+  name "wall_south"
+  boundingObject Box { size 12 0.1 1 }
+}
+Solid {
+  translation 11 5 0.5
+  children [ Shape { appearance PBRAppearance { baseColor 0.85 0.85 0.8 roughness 0.9 } geometry Box { size 0.1 12 1 } } ]
+  name "wall_east"
+  boundingObject Box { size 0.1 12 1 }
+}
+Solid {
+  translation -1 5 0.5
+  children [ Shape { appearance PBRAppearance { baseColor 0.85 0.85 0.8 roughness 0.9 } geometry Box { size 0.1 12 1 } } ]
+  name "wall_west"
+  boundingObject Box { size 0.1 12 1 }
+}
+
+# ==================== PLANT ROW 1 (y=2) ====================
+Solid { translation 2 2 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.1 0.6 0.15 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r1_1" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 3.5 2 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.15 0.65 0.1 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r1_2" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 5 2 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.2 0.55 0.12 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r1_3" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 6.5 2 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.12 0.62 0.18 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r1_4" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 8 2 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.58 0.14 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r1_5" boundingObject Cylinder { height 0.5 radius 0.15 } }
+
+# ==================== PLANT ROW 2 (y=5) ====================
+Solid { translation 2 5 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.1 0.55 0.2 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r2_1" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 3.5 5 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.15 0.6 0.15 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r2_2" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 5 5 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.2 0.5 0.1 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r2_3" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 6.5 5 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.12 0.58 0.22 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r2_4" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 8 5 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.14 0.62 0.16 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r2_5" boundingObject Cylinder { height 0.5 radius 0.15 } }
+
+# ==================== PLANT ROW 3 (y=8) ====================
+Solid { translation 2 8 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.6 0.12 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r3_1" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 3.5 8 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.1 0.65 0.2 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r3_2" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 5 8 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.16 0.56 0.14 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r3_3" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 6.5 8 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.2 0.6 0.1 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r3_4" boundingObject Cylinder { height 0.5 radius 0.15 } }
+Solid { translation 8 8 0.25 children [ Shape { appearance PBRAppearance { baseColor 0.12 0.58 0.18 roughness 0.8 } geometry Cylinder { height 0.5 radius 0.15 } } ] name "plant_r3_5" boundingObject Cylinder { height 0.5 radius 0.15 } }
+
+# ==================== SHELVES ====================
+Solid { translation 9.5 3.5 0.3 children [ Shape { appearance PBRAppearance { baseColor 0.6 0.4 0.2 roughness 0.7 } geometry Box { size 0.6 2 0.6 } } ] name "shelf_1" boundingObject Box { size 0.6 2 0.6 } }
+Solid { translation 0.5 6.5 0.3 children [ Shape { appearance PBRAppearance { baseColor 0.6 0.4 0.2 roughness 0.7 } geometry Box { size 0.6 2 0.6 } } ] name "shelf_2" boundingObject Box { size 0.6 2 0.6 } }
+
+# ==================== THE ROBOT ====================
+# The TurtleBot3Burger PROTO has built-in gyro and accelerometer.
+# We add InertialUnit (for orientation), imu_link, GPS, Camera, and LIDAR.
+TurtleBot3Burger {
+  translation 1 0.5 0
+  rotation 0 0 1 1.5708
+  controller "<extern>"
+  controllerArgs [
+    ""
+  ]
+  extensionSlot [
+    Solid {
+      name "imu_link"
+    }
+    GPS {
+    }
+    Compass {
+      name "compass"
+    }
+    InertialUnit {
+      name "inertial_unit"
+    }
+    Camera {
+      translation 0.05 0 0.04
+      rotation 0 0 1 0
+      name "camera"
+      width 320
+      height 240
+    }
+    RobotisLds01 {
+    }
+  ]
+}

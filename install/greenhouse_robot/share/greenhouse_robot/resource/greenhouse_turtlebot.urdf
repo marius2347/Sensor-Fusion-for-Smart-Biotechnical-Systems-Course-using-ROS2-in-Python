@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<robot name="GreenhouseTurtleBot3">
+    <webots>
+        <!-- LIDAR sensor -->
+        <device reference="LDS-01" type="Lidar">
+            <ros>
+                <enabled>true</enabled>
+                <updateRate>5</updateRate>
+                <topicName>/scan</topicName>
+                <alwaysOn>true</alwaysOn>
+                <frameName>LDS-01</frameName>
+            </ros>
+        </device>
+
+        <!-- IMU (fused inertial unit + gyro + accelerometer) -->
+        <plugin type="webots_ros2_driver::Ros2IMU">
+            <enabled>true</enabled>
+            <updateRate>20</updateRate>
+            <topicName>/imu</topicName>
+            <alwaysOn>true</alwaysOn>
+            <frameName>imu_link</frameName>
+            <inertialUnitName>inertial_unit</inertialUnitName>
+            <gyroName>gyro</gyroName>
+            <accelerometerName>accelerometer</accelerometerName>
+        </plugin>
+        <!-- Compass (magnetometer) for absolute heading -->
+        <device reference="compass" type="Compass">
+            <ros>
+                <enabled>true</enabled>
+                <updateRate>10</updateRate>
+                <topicName>/compass/values</topicName>
+                <alwaysOn>true</alwaysOn>
+                <frameName>base_link</frameName>
+            </ros>
+        </device>
+
+        <!-- RGB Camera for crop inspection -->
+        <device reference="camera" type="Camera">
+            <ros>
+                <enabled>true</enabled>
+                <updateRate>10</updateRate>
+                <topicName>/camera/image_raw</topicName>
+                <alwaysOn>true</alwaysOn>
+                <frameName>camera_link</frameName>
+            </ros>
+        </device>
+
+        <!-- ros2_control plugin for diff drive + odometry -->
+        <plugin type="webots_ros2_control::Ros2Control" />
+    </webots>
+
+    <!-- ros2_control hardware interface for diff drive -->
+    <ros2_control name="WebotsControl" type="system">
+        <hardware>
+            <plugin>webots_ros2_control::Ros2ControlSystem</plugin>
+        <!-- Compass (magnetometer) for absolute heading -->
+        <device reference="compass" type="Compass">
+            <ros>
+                <enabled>true</enabled>
+                <updateRate>10</updateRate>
+                <topicName>/compass/values</topicName>
+                <alwaysOn>true</alwaysOn>
+                <frameName>base_link</frameName>
+            </ros>
+        </device>
+        </hardware>
+        <joint name="right wheel motor">
+            <state_interface name="position"/>
+            <command_interface name="velocity"/>
+        </joint>
+        <joint name="left wheel motor">
+            <state_interface name="position"/>
+            <command_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+</robot>

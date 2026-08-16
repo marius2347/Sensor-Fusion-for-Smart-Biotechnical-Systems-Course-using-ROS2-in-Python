@@ -1,0 +1,4 @@
+[console_scripts]
+compass_to_imu = greenhouse_robot.compass_to_imu:main
+greenhouse_data_visualizer = greenhouse_robot.greenhouse_data_visualizer:main
+twist_relay = greenhouse_robot.twist_relay:main
